@@ -106,7 +106,7 @@ idx_nre_2 <- which(dissim_tab$date == "2017-02-20" | dissim_tab$date == "2017-01
 idx_nre <- c(idx_nre_2,idx_nre)
 dissim_tab$diss_nre <- NA
 dissim_tab$diss_nre[idx_nre] <- dissim_tab$dissimilarity[idx_nre]
-post_d <- nre::convert_to_daily(post)
+post_d <- nre::convert_to_daily(post_Data)
 post_d$eload_nre <- NA
 post_d$eload_nre[idx_nre] <- post_d$eload[idx_nre]
 post_d$eload_nre2 <- NA
