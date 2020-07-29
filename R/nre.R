@@ -55,10 +55,10 @@ dissim_calc <- function(post_Data,predicted_post_Data){
 nre_detect <- function(post_Data,predicted_post_Data){
   post_Data_d <- daily_tab(post_Data) #reshape Data
   post_Data_d_0 <- dplyr::select(post_Data_d,-date,-wday)
-  post_Data_d_0 <- as.data.frame(t(apply(post_Data_d_0,1,zoo::na.locf)))
+  post_Data_d_0 <- as.data.frame(apply(t(post_Data_d_0),1,zoo::na.locf))
   predicted_post_Data_d <- daily_tab(predicted_post_Data) #reshape Data
   predicted_post_Data_d_0 <- dplyr::select(predicted_post_Data_d,-date,-wday)
-  predicted_post_Data_d_0 <- as.data.frame(t(apply(predicted_post_Data_d_0,1,zoo::na.locf)))
+  predicted_post_Data_d_0 <- as.data.frame(apply(t(predicted_post_Data_d_0),1,zoo::na.locf))
   dissim_tab <- dissim_calc(post_Data_d_0,predicted_post_Data_d_0)
   cpt_res <- changepoint::cpt.meanvar(dissim_tab[,1],
                                       method="PELT",
